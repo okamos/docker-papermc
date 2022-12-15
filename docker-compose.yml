@@ -11,7 +11,12 @@ services:
       VERSION: "1.19.3"
       TYPE: "PAPER"
       MEMORY: "8G"
+      ENABLE_ROLLING_LOGS: "true"
       JVM_XX_OPTS: "-XX:MaxMetaspaceSize=1G"
+    logging:
+      driver: gcplogs
+      options:
+        gcp-meta-name: mc
     tty: true
     stdin_open: true
     restart: unless-stopped
