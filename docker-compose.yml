@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mc:
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+      - 19132:19132
+      - 19132:19132/udp
+    environment:
+      EULA: "TRUE"
+      VERSION: "1.19.3"
+      TYPE: "PAPER"
+      MEMORY: "8G"
+      JVM_XX_OPTS: "-XX:MaxMetaspaceSize=1G"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      - ./mc:/data
