@@ -20,7 +20,7 @@ async def on_message(message):
         try:
             start_instance(os.getenv("GCP_PROJECT"), os.getenv("GCP_ZONE"), os.getenv("GCP_MC_INSTANCE"))
         except:
-            await message.channel.send("起動に失敗しました”)
+            await message.channel.send("起動に失敗しました")
             return
         await message.channel.send("起動しました")
 
