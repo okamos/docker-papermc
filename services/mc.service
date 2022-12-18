@@ -1,13 +1,14 @@
 [Unit]
 Description=Minecraft with PaperMC
+Requires=docker.service
 After=syslog.target network.target
 
 [Service]
 WorkingDirectory=/home/okamoto_shinichi/docker-papermc
 Type=simple
 PIDFile=/run/discord.pid
-ExecStart=/usr/bin/docker-compose up
-ExecStop=/usr/bin/docker-compose down
+ExecStart=/usr/bin/docker-compose -f /home/okamoto_shinichi/docker-papermc/docker-compose.yml up
+ExecStop=/usr/bin/docker-compose -f /home/okamoto_shinichi/docker-papermc/docker-compose.yml down
 #EnvironmentFile=
 Restart=always
 RestartSec=10

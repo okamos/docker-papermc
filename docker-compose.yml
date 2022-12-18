@@ -21,4 +21,4 @@ services:
     stdin_open: true
     restart: unless-stopped
     volumes:
-      - ./mc:/data
+      - /home/okamoto_shinichi/docker-papermc/mc:/data
