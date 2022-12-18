@@ -1,0 +1,20 @@
+[Unit]
+Description=Discord bot
+After=syslog.target network.target
+
+[Service]
+WorkingDirectory=/home/okamoto_shinichi/docker-papermc/discordbot
+Type=simple
+PIDFile=/run/discord.pid
+ExecStart=/usr/bin/python3 /home/okamoto_shinichi/docker-papermc/discordbot/main.py
+ExecStop=/bin/kill -SIGTERM $MAINPID
+ExecReload=/bin/kill -HUP $MAINPID
+EnvironmentFile=/home/okamoto_shinichi/docker-papermc/discordbot/.env
+Restart=always
+RestartSec=10
+User=okamoto_shinichi
+Group=okamoto_shinichi
+
+[Install]
+WantedBy=multi-user.target
+
