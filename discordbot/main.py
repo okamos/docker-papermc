@@ -12,8 +12,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-channel = os.getenv("DISCORD_CHANNEL")
-mc_client = mcstatus.Client(os.getenv("MC_HOST"), os.getenv("MC_PORT"), 2)
+channel = int(os.getenv("DISCORD_CHANNEL"))
+mc_client = mcstatus.Client(os.getenv("MC_HOST"), int(os.getenv("MC_PORT")), 2)
 mcdown = True
 
 @tasks.loop(seconds=20)
@@ -24,11 +24,11 @@ async def checkmc():
         response = mc_client.get_status()
         print(response)
         if mcdown is True:
-            await c.send(statusMsg % (":white_check_mark:", "マインクラフトサーバーが開始しました"))
+            await c.send(":white_check_mark: マインクラフトサーバーが開始しました")
         mcdown = False
     except:
         if mcdown is False:
-            await c.send(statusMsg % (":x:", "マインクラフトサーバーが停止しました"))
+            await c.send(":x: マインクラフトサーバーが停止しました")
         mcdown = True
 
 @client.event
