@@ -5,8 +5,16 @@ packages:
   - docker.io
   - docker-compose
   - tmux
+  - python3-pip
 package_update: true
 package_upgrade: true
+
+users:
+  - default
+  - name: mc
+    gacos: User Minecraft
+    groups: users,docker
+    ssh_pwauth: False
 
 # agent install
 runcmd:
