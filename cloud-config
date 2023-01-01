@@ -1,34 +1,34 @@
 #cloud-config
+
 timezone: Asia/Tokyo
 locale: en_US.UTF-8
 packages:
-  - docker.io
-  - docker-compose
-  - tmux
-  - python3-pip
+- docker.io
+- docker-compose
+- tmux
+- python3-pip
 package_update: true
 package_upgrade: true
 
 users:
-  - default
-  - name: mc
-    gacos: User Minecraft
-    groups: users,docker
-    ssh_pwauth: False
+- name: mc
+  gacos: User Minecraft
+  groups: docker
+  ssh_pwauth: False
 
 # agent install
 runcmd:
-  - curl -sSO https://dl.google.com/cloudagents/add-logging-agent-repo.sh
-  - curl -sSO https://dl.google.com/cloudagents/add-monitoring-agent-repo.sh
-  - bash add-monitoring-agent-repo.sh
-  - bash add-logging-agent-repo.sh
-  - gcloud auth configure-docker --quiet
+- curl -sSO https://dl.google.com/cloudagents/add-logging-agent-repo.sh
+- curl -sSO https://dl.google.com/cloudagents/add-monitoring-agent-repo.sh
+- bash add-monitoring-agent-repo.sh
+- bash add-logging-agent-repo.sh
+- gcloud auth configure-docker --quiet
 
 write_files:
-  - path: /etc/docker/daemon.json
-    content: |
-      {
-        "userns-remap": "default"
-      }
-    permissions: '0644'
-    owner: root:root
+- path: /etc/docker/daemon.json
+  content: |
+    {
+      "userns-remap": "default"
+    }
+  permissions: '0644'
+  owner: root:root
